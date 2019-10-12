@@ -10,9 +10,9 @@ RUN set -ex \
       lldb libxml2 \
       # haskell
       libtinfo-dev libblas-dev liblapack-dev \
+      libcairo2-dev libpango1.0-dev libmagic-dev \
       # stack
       libffi-dev libgmp-dev zlib1g-dev gnupg \
-      #libcairo2-dev libpango1.0-dev libmagic-dev \
   ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 ### GO
