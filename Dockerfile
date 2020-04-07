@@ -12,7 +12,7 @@ RUN set -ex \
       libtinfo-dev libblas-dev liblapack-dev \
       libcairo2-dev libpango1.0-dev libmagic-dev \
       # stack
-      libffi-dev libgmp-dev zlib1g-dev gnupg \
+      libffi-dev libgmp-dev zlib1g-dev \
   ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 ### GO
