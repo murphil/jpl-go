@@ -16,7 +16,8 @@ RUN set -ex \
   ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 ### GO
-ENV GOROOT=/opt/go GOPATH=${HOME}/go GO_VERSION=1.14.4
+ENV GO_VERSION=1.14.4
+ENV GOROOT=/opt/go GOPATH=${HOME}/go
 ENV PATH=${GOPATH}/bin:${GOROOT}/bin:$PATH
 RUN set -ex \
   ; cd /opt \
