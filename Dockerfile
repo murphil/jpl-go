@@ -3,7 +3,7 @@ FROM nnurphy/conda
 RUN set -ex \
   ; apt-get update \
   ; apt-get install -y --no-install-recommends \
-      cmake build-essenial \
+      cmake build-essential \
       # rust
       libzmq3-dev pkg-config libssl-dev \
       # debug
