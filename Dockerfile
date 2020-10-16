@@ -1,4 +1,4 @@
-FROM nnurphy/conda:torch
+FROM nnurphy/conda
 
 RUN set -ex \
   ; apt-get update \
