@@ -9,6 +9,7 @@ RUN set -ex \
       # debug
       lldb libxml2 \
       # haskell
+      python3-dev python3-wheel \
       libtinfo-dev libblas-dev liblapack-dev \
       libcairo2-dev libpango1.0-dev libmagic-dev \
       # stack
