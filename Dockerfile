@@ -28,7 +28,6 @@ RUN set -ex \
   ; mkdir -p ${HOME}/.local/share/jupyter/kernels/gophernotes \
   ; cp $(go env GOPATH)/src/github.com/gopherdata/gophernotes/kernel/* \
       ${HOME}/.local/share/jupyter/kernels/gophernotes \
-  ; go get gonum.org/v1/gonum/mat \
   ; rm -rf $(go env GOCACHE)/*
 
 
