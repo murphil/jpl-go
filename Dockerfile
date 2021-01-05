@@ -17,12 +17,12 @@ RUN set -ex \
   ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 ### GO
-ENV GO_VERSION=1.15.6
 ENV GOROOT=/opt/go GOPATH=${HOME}/go
 ENV PATH=${GOPATH}/bin:${GOROOT}/bin:$PATH
 RUN set -ex \
   ; cd /opt \
-  ; wget -q -O- https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz \
+  ; GO_VERSION=$(curl https://golang.org/VERSION?m=text) \
+  ; wget -q -O- https://dl.google.com/go/${GO_VERSION}.linux-amd64.tar.gz \
       | tar xzf - \
   ; go get -u github.com/gopherdata/gophernotes \
   ; mkdir -p ${HOME}/.local/share/jupyter/kernels/gophernotes \
