@@ -77,15 +77,12 @@ RUN set -ex \
 
 
 ### Julia
-# ENV JULIA_HOME=/opt/julia JULIA_VERSION=1.1.0
+# ENV JULIA_HOME=/opt/julia
 # ENV PATH=${JULIA_HOME}/bin:$PATH
-#
-# RUN set -ex \
-#   ; mkdir ${JULIA_HOME} \
-#   ; ssh up "cat ~/pub/Platform/julia-${JULIA_VERSION}-linux-x86_64.tar.gz" \
+# RUN set -eux \
+#   ; julia_version=$(curl -sSL https://julialang.org/downloads/ | pup '#current_stable_release > a text{}' | awk '{print $4}') \
 #     | tar xz -C ${JULIA_HOME} --strip-components 1 \
-#   ; julia -e 'using Pkg; Pkg.add("IJulia"); using IJulia' \
-#   ; chown -R root:root ${JULIA_HOME}
+#   ; julia -e 'using Pkg; Pkg.add("IJulia"); using IJulia'
 
 
 ### iTorch
