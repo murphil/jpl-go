@@ -28,8 +28,13 @@ RUN set -ex \
   ; mkdir -p ${HOME}/.local/share/jupyter/kernels/gophernotes \
   ; cp $(go env GOPATH)/src/github.com/gopherdata/gophernotes/kernel/* \
       ${HOME}/.local/share/jupyter/kernels/gophernotes \
+  ; GO111MODULE=on go get golang.org/x/tools/gopls@latest \
   ; rm -rf $(go env GOCACHE)/*
 
+RUN set -eux \
+  ; nvim_home=/etc/skel/.config/nvim \
+  ; $nvim_home/plugged/vimspector/install_gadget.py --enable-go \
+  ; rm -f $nvim_home/plugged/vimspector/gadgets/linux/download/vscode-go/*/*.vsix
 
 ### Racket
 #ENV RACKET_HOME=/opt/racket RACKET_VERSION=7.3
