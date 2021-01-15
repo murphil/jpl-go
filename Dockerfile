@@ -26,9 +26,11 @@ RUN set -ex \
   ; wget -q -O- https://dl.google.com/go/${GO_VERSION}.linux-amd64.tar.gz \
       | tar xzf - \
   ; go get -u github.com/gopherdata/gophernotes \
-  ; mkdir -p ${HOME}/.local/share/jupyter/kernels/gophernotes \
-  ; cp $(go env GOPATH)/src/github.com/gopherdata/gophernotes/kernel/* \
-      ${HOME}/.local/share/jupyter/kernels/gophernotes \
+  ; gophernotes_dir=${HOME}/.local/share/jupyter/kernels/gophernotes \
+  ; mkdir -p $gophernotes_dir \
+  ; cp "$(go env GOPATH)"/src/github.com/gopherdata/gophernotes*/kernel/* $gophernotes_dir \
+  ; chmod +w $gophernotes_dir/kernel.json \
+  ; sed "s|gophernotes|$(go env GOPATH)/bin/gophernotes|" < $gophernotes_dir/kernel.json.in > $gophernotes_dir/kernel.json \
   ; go get golang.org/x/tools/gopls@latest \
   ; rm -rf $(go env GOCACHE)/*
 
