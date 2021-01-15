@@ -19,6 +19,7 @@ RUN set -ex \
 ### GO
 ENV GOROOT=/opt/go GOPATH=${HOME}/go
 ENV PATH=${GOPATH}/bin:${GOROOT}/bin:$PATH
+ENV GO111MODULE=on
 RUN set -ex \
   ; cd /opt \
   ; GO_VERSION=$(curl https://golang.org/VERSION?m=text) \
@@ -28,7 +29,7 @@ RUN set -ex \
   ; mkdir -p ${HOME}/.local/share/jupyter/kernels/gophernotes \
   ; cp $(go env GOPATH)/src/github.com/gopherdata/gophernotes/kernel/* \
       ${HOME}/.local/share/jupyter/kernels/gophernotes \
-  ; GO111MODULE=on go get golang.org/x/tools/gopls@latest \
+  ; go get golang.org/x/tools/gopls@latest \
   ; rm -rf $(go env GOCACHE)/*
 
 RUN set -eux \
