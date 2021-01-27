@@ -16,28 +16,28 @@ RUN set -ex \
       libffi-dev libgmp-dev zlib1g-dev \
   ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
-### GO
-ENV GOROOT=/opt/go GOPATH=${HOME}/go
-ENV PATH=${GOPATH}/bin:${GOROOT}/bin:$PATH
-ENV GO111MODULE=on
-RUN set -ex \
-  ; cd /opt \
-  ; GO_VERSION=$(curl https://golang.org/VERSION?m=text) \
-  ; wget -q -O- https://dl.google.com/go/${GO_VERSION}.linux-amd64.tar.gz \
-      | tar xzf - \
-  ; go get -u github.com/gopherdata/gophernotes \
-  ; gophernotes_dir=${HOME}/.local/share/jupyter/kernels/gophernotes \
-  ; mkdir -p $gophernotes_dir \
-  ; cp "$(go env GOPATH)"/pkg/mod/github.com/gopherdata/gophernotes*/kernel/* $gophernotes_dir \
-  ; chmod +w $gophernotes_dir/kernel.json \
-  ; sed "s|gophernotes|$(go env GOPATH)/bin/gophernotes|" < $gophernotes_dir/kernel.json.in > $gophernotes_dir/kernel.json \
-  ; go get golang.org/x/tools/gopls@latest \
-  ; rm -rf $(go env GOCACHE)/*
-
-RUN set -eux \
-  ; nvim_home=/etc/skel/.config/nvim \
-  ; $nvim_home/plugged/vimspector/install_gadget.py --enable-go \
-  ; rm -f $nvim_home/plugged/vimspector/gadgets/linux/download/*/*/*.vsix
+# ### GO
+# ENV GOROOT=/opt/go GOPATH=${HOME}/go
+# ENV PATH=${GOPATH}/bin:${GOROOT}/bin:$PATH
+# ENV GO111MODULE=on
+# RUN set -ex \
+#   ; cd /opt \
+#   ; GO_VERSION=$(curl https://golang.org/VERSION?m=text) \
+#   ; wget -q -O- https://dl.google.com/go/${GO_VERSION}.linux-amd64.tar.gz \
+#       | tar xzf - \
+#   ; go get -u github.com/gopherdata/gophernotes \
+#   ; gophernotes_dir=${HOME}/.local/share/jupyter/kernels/gophernotes \
+#   ; mkdir -p $gophernotes_dir \
+#   ; cp "$(go env GOPATH)"/pkg/mod/github.com/gopherdata/gophernotes*/kernel/* $gophernotes_dir \
+#   ; chmod +w $gophernotes_dir/kernel.json \
+#   ; sed "s|gophernotes|$(go env GOPATH)/bin/gophernotes|" < $gophernotes_dir/kernel.json.in > $gophernotes_dir/kernel.json \
+#   ; go get golang.org/x/tools/gopls@latest \
+#   ; rm -rf $(go env GOCACHE)/*
+#
+# RUN set -eux \
+#   ; nvim_home=/etc/skel/.config/nvim \
+#   ; $nvim_home/plugged/vimspector/install_gadget.py --enable-go \
+#   ; rm -f $nvim_home/plugged/vimspector/gadgets/linux/download/*/*/*.vsix
 
 ### Racket
 #ENV RACKET_HOME=/opt/racket RACKET_VERSION=7.3
