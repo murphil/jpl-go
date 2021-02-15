@@ -10,10 +10,10 @@ RUN set -ex \
       lldb libxml2 \
       # haskell
       python3-dev python3-wheel \
-      libtinfo-dev libblas-dev liblapack-dev \
+      libncurses-dev libtinfo-dev libblas-dev liblapack-dev \
       libcairo2-dev libpango1.0-dev libmagic-dev \
       # stack
-      libffi-dev libgmp-dev zlib1g-dev \
+      libicu-dev libffi-dev libgmp-dev zlib1g-dev \
   ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # ### GO
