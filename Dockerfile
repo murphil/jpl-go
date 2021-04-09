@@ -23,7 +23,7 @@ RUN set -ex \
 # RUN set -ex \
 #   ; cd /opt \
 #   ; GO_VERSION=$(curl https://golang.org/VERSION?m=text) \
-#   ; wget -q -O- https://dl.google.com/go/${GO_VERSION}.linux-amd64.tar.gz \
+#   ; curl -sSL https://dl.google.com/go/${GO_VERSION}.linux-amd64.tar.gz \
 #       | tar xzf - \
 #   ; go get -u github.com/gopherdata/gophernotes \
 #   ; gophernotes_dir=${HOME}/.local/share/jupyter/kernels/gophernotes \
@@ -48,8 +48,8 @@ RUN set -ex \
 #      libcairo2 libpango-1.0-0 libpangocairo-1.0 \
 #  ; apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
 #  ; url=https://mirror.racket-lang.org/installers/${RACKET_VERSION}/racket-minimal-${RACKET_VERSION}-x86_64-linux.sh \
-#  #; wget -q -O- $url | sh -s -- --in-place --dest ${RACKET_HOME} \
-#  ; wget -q -O racket.sh $url \
+#  #; curl -sSL $url | sh -s -- --in-place --dest ${RACKET_HOME} \
+#  ; curl -sSLo racket.sh $url \
 #  ; sh ./racket.sh --in-place --dest ${RACKET_HOME} \
 #  ; rm ./racket.sh \
 #  ; raco pkg install --auto iracket \
@@ -111,7 +111,7 @@ RUN set -ex \
 #ENV PATH=${OPAMROOT}/default/bin:$PATH
 #RUN set -ex \
 #  ; apt-get install -y --no-install-recommends m4 bubblewrap libcairo2-dev && apt-get clean \
-#  ; wget -q -O /usr/local/bin/opam https://github.com/ocaml/opam/releases/download/${OPAMVERSION}/opam-${OPAMVERSION}-x86_64-linux \
+#  ; curl -sSLo /usr/local/bin/opam https://github.com/ocaml/opam/releases/download/${OPAMVERSION}/opam-${OPAMVERSION}-x86_64-linux \
 #  ; chmod +x /usr/local/bin/opam \
 #  #; sudo sysctl kernel.unprivileged_userns_clone=1 \
 #  ; opam init -a --disable-sandboxing \
@@ -150,7 +150,7 @@ RUN set -ex \
 #  ; mkdir -p ${SCALA_HOME} \
 #  ; apt-get -y --no-install-recommends install openjdk-${JAVA_VERSION}-jdk-headless \
 #  ; apt-get clean \
-#  ; wget -q -O- https://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz \
+#  ; curl -sSL https://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz \
 #      | tar xzf - -C ${SCALA_HOME} --strip-components=1  \
 #  ; curl -Lo coursier https://git.io/coursier-cli && chmod +x coursier \
 #  ; ./coursier bootstrap \
