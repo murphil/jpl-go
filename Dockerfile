@@ -1,4 +1,4 @@
-FROM nnurphy/conda:latest
+FROM nashv1/conda:latest
 
 RUN set -ex \
   ; apt-get update \
